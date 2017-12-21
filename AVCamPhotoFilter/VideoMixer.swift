@@ -30,7 +30,7 @@ class VideoMixer {
 
     private lazy var commandQueue: MTLCommandQueue = {
         return self.metalDevice.makeCommandQueue()
-    }()
+    }()!//cgd
 
     private var fullRangeVertexBuffer: MTLBuffer
 
@@ -44,7 +44,7 @@ class VideoMixer {
             1.0, -1.0
             ]
 
-        fullRangeVertexBuffer = metalDevice.makeBuffer(bytes: vertexData, length: vertexData.count * MemoryLayout<Float>.size, options: [])
+        fullRangeVertexBuffer = metalDevice.makeBuffer(bytes: vertexData, length: vertexData.count * MemoryLayout<Float>.size, options: [])!//cgd
 
 		let defaultLibrary = metalDevice.makeDefaultLibrary()!
 
@@ -64,7 +64,7 @@ class VideoMixer {
 		let samplerDescriptor = MTLSamplerDescriptor()
 		samplerDescriptor.minFilter = .linear
 		samplerDescriptor.magFilter = .linear
-		sampler = metalDevice.makeSamplerState(descriptor: samplerDescriptor)
+        sampler = metalDevice.makeSamplerState(descriptor: samplerDescriptor)! //cgd
 	}
 
 	func prepare(with videoFormatDescription: CMFormatDescription, outputRetainedBufferCountHint: Int) {
@@ -124,7 +124,7 @@ class VideoMixer {
 
 		// Set up command buffer and encoder
 		let commandBuffer = commandQueue.makeCommandBuffer()
-		let commandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
+		let commandEncoder = commandBuffer!.makeRenderCommandEncoder(descriptor: renderPassDescriptor)!//cgd
 		commandEncoder.label = "Video Mixer"
 		commandEncoder.setRenderPipelineState(renderPipelineState!)
 		commandEncoder.setVertexBuffer(fullRangeVertexBuffer, offset: 0, index: 0)
@@ -134,7 +134,7 @@ class VideoMixer {
 		commandEncoder.setFragmentBytes( UnsafeMutableRawPointer(&parameters), length: MemoryLayout<MixerParameters>.size, index: 0)
 		commandEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
 		commandEncoder.endEncoding()
-		commandBuffer.commit()
+		commandBuffer!.commit()//cgd
 
         return outputPixelBuffer
 	}

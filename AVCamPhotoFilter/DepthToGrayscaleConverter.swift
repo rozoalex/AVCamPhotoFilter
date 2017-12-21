@@ -29,7 +29,7 @@ class DepthToGrayscaleConverter: FilterRenderer {
 
     private lazy var commandQueue: MTLCommandQueue = {
         return self.metalDevice.makeCommandQueue()
-    }()
+    }()! //cgd
 
 	private var textureCache: CVMetalTextureCache!
 	
@@ -155,7 +155,7 @@ class DepthToGrayscaleConverter: FilterRenderer {
 		
 		// Set up command buffer and encoder
 		let commandBuffer = commandQueue.makeCommandBuffer()
-		let commandEncoder = commandBuffer.makeComputeCommandEncoder()
+        let commandEncoder = commandBuffer!.makeComputeCommandEncoder()!//cgd
 		commandEncoder.label = "Depth to Grayscale"
 		commandEncoder.setComputePipelineState(computePipelineState!)
 		commandEncoder.setTexture(inputTexture, index: 0)
@@ -172,7 +172,7 @@ class DepthToGrayscaleConverter: FilterRenderer {
 		commandEncoder.dispatchThreadgroups(threadgroupsPerGrid, threadsPerThreadgroup: threadsPerThreadgroup)
 
 		commandEncoder.endEncoding()
-		commandBuffer.commit()
+		commandBuffer!.commit()//cgd
 
 		return outputPixelBuffer
 	}

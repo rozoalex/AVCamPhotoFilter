@@ -29,7 +29,7 @@ class RosyMetalRenderer: FilterRenderer {
 
     private lazy var commandQueue: MTLCommandQueue = {
         return self.metalDevice.makeCommandQueue()
-    }()
+        }()!//cgd
 
 	required init() {
 		let defaultLibrary = metalDevice.makeDefaultLibrary()!
@@ -89,7 +89,7 @@ class RosyMetalRenderer: FilterRenderer {
 
 		// Set up command buffer and encoder
 		let commandBuffer = commandQueue.makeCommandBuffer()
-		let commandEncoder = commandBuffer.makeComputeCommandEncoder()
+		let commandEncoder = commandBuffer!.makeComputeCommandEncoder()!//cgd
 		commandEncoder.label = "Rosy Metal"
 		commandEncoder.setComputePipelineState(computePipelineState!)
 		commandEncoder.setTexture(inputTexture, index: 0)
@@ -105,7 +105,7 @@ class RosyMetalRenderer: FilterRenderer {
 		commandEncoder.dispatchThreadgroups(threadgroupsPerGrid, threadsPerThreadgroup: threadsPerThreadgroup)
 
 		commandEncoder.endEncoding()
-		commandBuffer.commit()
+		commandBuffer!.commit()
 
 		return outputPixelBuffer
 	}

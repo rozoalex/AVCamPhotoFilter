@@ -57,10 +57,13 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
 	private var videoDeviceInput: AVCaptureDeviceInput!
 
 	private let dataOutputQueue = DispatchQueue(label: "video data queue", qos: .userInitiated, attributes: [], autoreleaseFrequency: .workItem)
+    //for managing video data tasks
 
 	private let videoDataOutput = AVCaptureVideoDataOutput()
+    //object for getting the video data
 
 	private let depthDataOutput = AVCaptureDepthDataOutput()
+    //object for getting depth data, if depth device doesnt exist, it doesnt work
 
 	private var outputSynchronizer: AVCaptureDataOutputSynchronizer?
 
@@ -114,6 +117,8 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
 		depthSmoothingLabel.isHidden = true
 		mixFactorSlider.isHidden = true
 
+        
+        //Define gesture interations
 		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(focusAndExposeTap))
 		previewView.addGestureRecognizer(tapGesture)
 
@@ -124,7 +129,9 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
 		let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(changeFilterSwipe))
 		rightSwipeGesture.direction = .right
 		previewView.addGestureRecognizer(rightSwipeGesture)
-
+        //Define gestures interactions
+        
+        
 		// Check video authorization status, video access is required
 		switch AVCaptureDevice.authorizationStatus(for: .video) {
 			case .authorized:
@@ -172,7 +179,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
 
 		let initialThermalState = ProcessInfo.processInfo.thermalState
 		if initialThermalState == .serious || initialThermalState == .critical {
-			showThermalState(state: initialThermalState)
+			//showThermalState(state: initialThermalState)
 		}
 
 		sessionQueue.async {
@@ -397,7 +404,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
 			print("Could not find any video device")
 			setupResult = .configurationFailed
 			return
-		}
+		}//Nothing will happen if there is no video device
 
 		do {
 			videoDeviceInput = try AVCaptureDeviceInput(device: videoDevice)
@@ -408,11 +415,12 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
 		}
 
 		session.beginConfiguration()
+        //session is AVCaptureSession
 
 		session.sessionPreset = AVCaptureSession.Preset.photo
 
 		// Add a video input
-		guard session.canAddInput(videoDeviceInput) else {
+		guard session.canAddInput(videoDeviceInput) else { //videoDeviceInput is AVCaptureDeviceInput
 			print("Could not add video device input to the session")
 			setupResult = .configurationFailed
 			session.commitConfiguration()
@@ -453,6 +461,8 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
 			return
 		}
 
+        
+        
 		// Add a depth data output
 		if session.canAddOutput(depthDataOutput) {
 			session.addOutput(depthDataOutput)
@@ -611,6 +621,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
 		}
 	}
 
+    //smooth the depth 
 	@IBAction private func changeDepthSmoothing(_ sender: UISwitch) {
 		let smoothingEnabled = sender.isOn
 
@@ -923,6 +934,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
 				photoSettings.embedsDepthDataInPhoto = false
 			}
 
+            //capture the current frame
 			self.photoOutput.capturePhoto(with: photoSettings, delegate: self)
 		}
 	}

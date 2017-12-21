@@ -335,7 +335,7 @@ class PreviewMetalView: MTKView {
 
 		// Set up command buffer and encoder
 		let commandBuffer = commandQueue.makeCommandBuffer()
-		let commandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: currentRenderPassDescriptor)
+		let commandEncoder = commandBuffer!.makeRenderCommandEncoder(descriptor: currentRenderPassDescriptor)!//cgd
 		commandEncoder.label = "Preview display"
 		commandEncoder.setRenderPipelineState(renderPipelineState!)
 		commandEncoder.setVertexBuffer(vertexCoordBuffer, offset: 0, index: 0)
@@ -344,7 +344,7 @@ class PreviewMetalView: MTKView {
 		commandEncoder.setFragmentSamplerState(sampler, index: 0)
 		commandEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
 		commandEncoder.endEncoding()
-		commandBuffer.present(drawable) // Draw to the screen
-		commandBuffer.commit()
+		commandBuffer!.present(drawable) // Draw to the screen //cgd
+		commandBuffer!.commit() //cgd
 	}
 }

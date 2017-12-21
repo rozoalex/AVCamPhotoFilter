@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CE9E4091FEACF8600691691 /* DepthToLocationConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE9E4081FEACF8600691691 /* DepthToLocationConverter.swift */; };
+		1CE9E40B1FEAD63800691691 /* RosComunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE9E40A1FEAD63800691691 /* RosComunicator.swift */; };
 		2608B7DB1E70937A00A7310F /* RosyMetalRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608B7DA1E70937A00A7310F /* RosyMetalRenderer.swift */; };
 		261FA1F71E945EEA00BE8D47 /* VideoMixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261FA1F61E945EEA00BE8D47 /* VideoMixer.swift */; };
 		261FA1F91E94641700BE8D47 /* Mixer.metal in Sources */ = {isa = PBXBuildFile; fileRef = 261FA1F81E94641700BE8D47 /* Mixer.metal */; };
@@ -27,6 +29,8 @@
 
 /* Begin PBXFileReference section */
 		065F2DCB1DE58B9BFBC80B31 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		1CE9E4081FEACF8600691691 /* DepthToLocationConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthToLocationConverter.swift; sourceTree = "<group>"; };
+		1CE9E40A1FEAD63800691691 /* RosComunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosComunicator.swift; sourceTree = "<group>"; };
 		2608B7DA1E70937A00A7310F /* RosyMetalRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RosyMetalRenderer.swift; sourceTree = "<group>"; };
 		261FA1F61E945EEA00BE8D47 /* VideoMixer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoMixer.swift; sourceTree = "<group>"; };
 		261FA1F81E94641700BE8D47 /* Mixer.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Mixer.metal; sourceTree = "<group>"; };
@@ -62,6 +66,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1CE9E4061FEACEED00691691 /* Communicator */ = {
+			isa = PBXGroup;
+			children = (
+				1CE9E40A1FEAD63800691691 /* RosComunicator.swift */,
+			);
+			path = Communicator;
+			sourceTree = "<group>";
+		};
+		1CE9E4071FEACF2A00691691 /* DepthToLocation */ = {
+			isa = PBXGroup;
+			children = (
+				1CE9E4081FEACF8600691691 /* DepthToLocationConverter.swift */,
+			);
+			path = DepthToLocation;
+			sourceTree = "<group>";
+		};
 		2672370F1E79BFD1003D2EAA /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +132,8 @@
 		E422DFB91CEF894F0047D7A4 /* AVCamPhotoFilter */ = {
 			isa = PBXGroup;
 			children = (
+				1CE9E4071FEACF2A00691691 /* DepthToLocation */,
+				1CE9E4061FEACEED00691691 /* Communicator */,
 				E422DFCD1CEF8AF50047D7A4 /* AppDelegate.swift */,
 				E422DFCC1CEF8AF50047D7A4 /* CameraViewController.swift */,
 				E46129031CF4C0B8004FE176 /* PreviewMetalView.swift */,
@@ -164,7 +186,7 @@
 				TargetAttributes = {
 					E422DFB61CEF894F0047D7A4 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 65PMYRRX45;
+						DevelopmentTeam = HCTJ7F8C95;
 						DevelopmentTeamName = "Apple Inc. - Core OS Plus Others";
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Manual;
@@ -217,6 +239,8 @@
 				267ED8501ED7974A00898078 /* minMaxFromBuffer.m in Sources */,
 				2672370C1E79BF6E003D2EAA /* RosyEffect.metal in Sources */,
 				2633CF1D1E7C65D500FC80E1 /* DepthToGrayscaleConverter.swift in Sources */,
+				1CE9E40B1FEAD63800691691 /* RosComunicator.swift in Sources */,
+				1CE9E4091FEACF8600691691 /* DepthToLocationConverter.swift in Sources */,
 				2672370E1E79BFC0003D2EAA /* DepthToGrayscale.metal in Sources */,
 				E46129041CF4C0B8004FE176 /* PreviewMetalView.swift in Sources */,
 				E422DFCE1CEF8AF50047D7A4 /* CameraViewController.swift in Sources */,
@@ -351,7 +375,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 65PMYRRX45;
+				DEVELOPMENT_TEAM = HCTJ7F8C95;
 				INFOPLIST_FILE = AVCamPhotoFilter/Info.plist;
 				INSTALL_PATH = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -361,8 +385,8 @@
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dpark.SimpleSDKExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fc1715cb-9ca3-4f39-83c0-b737249b5840";
-				PROVISIONING_PROFILE_SPECIFIER = "photo filter dev for Dan";
+				PROVISIONING_PROFILE = "b74c3312-4ed3-4f29-9836-189bd81ee9f1";
+				PROVISIONING_PROFILE_SPECIFIER = DepthCam;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "AVCamPhotoFilter/AVCamPhotoFilter-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -378,7 +402,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 65PMYRRX45;
+				DEVELOPMENT_TEAM = HCTJ7F8C95;
 				INFOPLIST_FILE = AVCamPhotoFilter/Info.plist;
 				INSTALL_PATH = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -387,8 +411,8 @@
 				MTL_OPTIMIZATION_LEVEL = 0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dpark.SimpleSDKExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fc1715cb-9ca3-4f39-83c0-b737249b5840";
-				PROVISIONING_PROFILE_SPECIFIER = "photo filter dev for Dan";
+				PROVISIONING_PROFILE = "b74c3312-4ed3-4f29-9836-189bd81ee9f1";
+				PROVISIONING_PROFILE_SPECIFIER = DepthCam;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "AVCamPhotoFilter/AVCamPhotoFilter-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
